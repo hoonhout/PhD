@@ -1,0 +1,14 @@
+numpy
+scipy
+matplotlib
+pandas
+netCDF4
+xray
+gdal
+cartopy
+shapely
+pyproj
+pytz
+knmi
+waterbase
+aeolis

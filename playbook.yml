@@ -1,0 +1,107 @@
+---
+
+- hosts: none
+  vars:
+    data_path: "{{ ansible_env.PWD }}/Data"
+    svn_user: "{{ lookup('env', 'SVN_USER') }}"
+    svn_password: "{{ lookup('env', 'SVN_PASSWORD') }}"
+    svn_host: "https://zandmotordata.nl/repos/zandmotor/trunk/morphology"
+    rws_host: "http://www.rijkswaterstaat.nl/apps/geoservices/geodata/dmc"
+  tasks:
+  - name: download grain size data
+    subversion:
+      repo: "{{ item }}"
+      dest: "{{ data_path }}/grainsize"
+      username: "{{ svn_user }}"
+      password: "{{ svn_password }}"
+      export: yes
+      force: yes
+    with_items:
+      - "{{ svn_host }}/sediment_composition/Data_T0_1993to2001_TNO/TNOdata.txt"
+      - "{{ svn_host }}/sediment_composition/MacroPhotography_NEMO/raw/sieve/20130221_Zandmotor/Feb212013SandSamplesDataProcess.xlsx"
+      - "{{ svn_host }}/sediment_composition/MacroPhotography_NEMO/raw/sieve/20130725_Kijkduin/2013 07 25 KD surface sieve data process REDO.xlsx"
+      - "{{ svn_host }}/sediment_composition/MacroPhotography_NEMO/raw/sieve/20130725_Kijkduin/2013 07 25 surface sieve data process.xlsx"
+      - "{{ svn_host }}/sediment_composition/MacroPhotography_NEMO/raw/sieve/20130822_Zandmotor/2013 08 22 SM surface sieve data process.xlsx"
+  - name: download jetski topography data
+    subversion:
+      repo: "{{ svn_host }}/JETSKI/raw/zandmotor/"
+      dest: "{{ data_path }}/jetski"
+      username: "{{ svn_user }}"
+      password: "{{ svn_password }}"
+      export: yes
+      force: yes
+  - name: download lidar topography data
+    get_url:
+      url: "{{ item }}"
+      dest: "{{ data_path }}/lidar"
+    with_items:
+      - "{{ rws_host }}/kust2_2011_2/kust2_2011_2.zip"
+      - "{{ rws_host }}/kust2_2012_2/kust2_2012_2.zip"
+      - "{{ rws_host }}/kust2_2013_2/kust2_2013_2.zip"
+      - "{{ rws_host }}/kust2_2014_2/kust2_2014_2.zip"
+      - "{{ rws_host }}/kust2_2015_2/kust2_2015_2.zip"
+      - "{{ rws_host }}/kust_2011_5/kust_2011_5.zip"
+      - "{{ rws_host }}/kust_2012_5/kust_2012_5.zip"
+      - "{{ rws_host }}/kust_2013_2/kust_2013_2.zip"
+      - "{{ rws_host }}/kust_2014_2/kust_2014_2.zip"
+      - "{{ rws_host }}/kust_2015_2/kust_2015_2.zip"
+  - name: unpack lidar topography data
+    unarchive:
+      src: "{{ item }}"
+      dest: "{{ data_path }}/lidar"
+      remote_src: yes
+    with_items:
+      - "{{ data_path }}/lidar/kust2_2011_2.zip"
+      - "{{ data_path }}/lidar/kust2_2012_2.zip"
+      - "{{ data_path }}/lidar/kust2_2013_2.zip"
+      - "{{ data_path }}/lidar/kust2_2014_2.zip"
+      - "{{ data_path }}/lidar/kust2_2015_2.zip"
+      - "{{ data_path }}/lidar/kust_2011_5.zip"
+      - "{{ data_path }}/lidar/kust_2012_5.zip"
+      - "{{ data_path }}/lidar/kust_2013_2.zip"
+      - "{{ data_path }}/lidar/kust_2014_2.zip"
+      - "{{ data_path }}/lidar/kust_2015_2.zip"
+  - name: download KNMI meteorology data
+    get_url:
+      url: "https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/uurgegevens/uurgeg_330_2011-2020.zip"
+      dest: "{{ data_path }}/knmi"
+  - name: unpack KNMI meteorology data
+    unarchive:
+      src: "{{ data_path }}/knmi/uurgeg_330_2011-2020.zip"
+      dest: "{{ data_path }}/knmi"
+      
+- hosts: all
+  vars:
+    venv_path: "{{ ansible_env.PWD }}/VirtualEnv"
+    ipynb_path: "{{ ansible_env.PWD }}/Notebooks"
+  tasks:
+  - name: install python packages
+    pip:
+      requirements: "{{ ansible_env.PWD }}/requirements.txt"
+      virtualenv: "{{ venv_path }}"
+      virtualenv_python: python2.7
+      virtualenv_site_packages: yes
+  - name: analyze data, run models and create figures
+    shell: "ipython nbconvert --to=python {{ item }}.ipynb && source {{ venv_path }}/bin/activate && python {{ item }}.py chdir={{ ipynb_path }}"
+    with_items:
+      - "00.\\ Data\\ concepts"
+      - "00.\\ Grainsize"
+      - "00.\\ KNMI"
+      - "00.\\ Lidar"
+      - "00.\\ Model\\ concepts"
+      - "01.\\ Sand\\ Motor\\ (budgets)"
+      - "02.\\ Adjacent\\ coasts"
+      - "03.\\ MegaPeX\\ (gradients)"
+      - "04.\\ MegaPeX\\ (nails)"
+      - "05.\\ AeoLiS\\ (test\\ cases)"
+      - "06.\\ AeoLiS\\ (wind\\ tunnel)"
+      - "07.\\ AeoLiS\\ (sensitivity)"
+      - "08.\\ AeoLiS\\ (Sand\\ Motor)"
+      - "09.\\ AeoLiS\\ (budgets)"
+      - "10.\\ Bagnold"
+      - "11.\\ Maps"
+     
+- hosts: none
+  tasks:
+  - name: compile thesis
+    shell: "pdflatex Latex/thesis.tex"

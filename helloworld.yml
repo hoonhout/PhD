@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: test connection
+      ping:
+    - name: say hello
+      shell: "echo 'hello world'"
+      
