@@ -1,0 +1,96 @@
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[english,
+            dutch]{babel}
+\usepackage[eulerchapternumbers,
+            eulermath,
+            parts,
+            pdfspacing,
+            dottedtoc,
+            floatperchapter,
+            linedheaders]{classicthesis}
+\usepackage[paperheight=240mm,
+            paperwidth=170mm,
+            height=190mm,
+            width=120mm,
+            left=25mm,
+            heightrounded]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\usepackage{lineno}
+\linenumbers*[1]
+
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+\usepackage{bibentry}
+\nobibliography*
+
+\hypersetup{%
+  %draft, % = no hyperlinking at all (useful in b/w printouts)
+  pdfpagelayout=TwoPageRight,
+  pdfstartpage=1,
+  pdfpagemode=UseOutlines,
+  pdfstartview=Fit,
+  colorlinks=true,
+  linktocpage=true,
+  breaklinks=true,
+  pageanchor=true,
+  plainpages=false,
+  pagebackref=true,
+  bookmarksnumbered,
+  bookmarksopen=true,
+  bookmarksopenlevel=10,
+  hypertexnames=true,
+  pdfhighlight=/O,
+  urlcolor=webbrown,
+  linkcolor=RoyalBlue,
+  citecolor=webgreen,
+  pdftitle={Aeolian Sediment Availability and Transport},
+  pdfauthor={Bas Hoonhout <b.m.hoonhout@tudelft.nl>},
+  pdfsubject={PhD thesis on coastal aeolian sediment availability and transport,
+  including field measurements and numerical modeling.},
+  pdfkeywords={aeolian sediment transport; sediment availability; sediment supply; field measurements; modeling; AeoLiS; Sand Motor},
+  pdfcreator={pdfLaTeX},
+  pdfproducer={LaTeX with hyperref and classicthesis}
+}
+
+
+% set crop margins
+\ifthenelse
+{\boolean{a4}}
+{
+  \usepackage[cam,
+              a4,
+              center]{crop}
+}{}
+
+% add unnumbered chapters at part level tot toc, in black and right formatting
+\newcommand{\addchaptertotoc}[2][part]{
+  \addcontentsline{toc}{#1}{\textls[80]{\textcolor{black}{\lowercase{\scshape #2}}}}
+}
+
+% add references to research questions in margin
+\newcommand{\mrq}[2][]{\ifthenelse
+  {\boolean{researchquestions}}
+  {\label{m:#2#1}} %{\graffito{\label{m:#2#1} Research\\question \hyperref[q:#2]{#2}}}
+  {}}
+
+\newcommand{\rrq}[3][]{\ifthenelse
+  {\boolean{researchquestions}}
+  { (#1Section \ref{m:#2}).}
+  {}}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End:

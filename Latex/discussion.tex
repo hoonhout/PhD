@@ -1,0 +1,332 @@
+This thesis explored the nature of aeolian sediment availability.
+Aeolian sediment availability is generally associated with the shear
+velocity threshold. Alternatively, sediment availability can be
+expressed in terms of critical fetch \citep{Bauer2002} or explicitly
+following \citet{deVries2014b}. The latter two approaches deviate
+rather radically from the legacy of aeolian research. Both discard the
+abundantly available relations between bed surface properties,
+sediment availability and the shear velocity threshold. Instead, they
+describe sediment availability in new terms for which no
+quantification is known. In Chapter \ref{ch:model} it is argued that
+the new approaches have a right to exist as they allow for an
+increased complexity in situations that can be described by
+models. Ultimately, the approach of \citet{deVries2014b} is adopted
+for this thesis and adapted to support multi-fraction sediment
+transport in order to simulate sediment sorting and beach armoring
+that introduces feedback between aeolian sediment availability and
+transport in aeolian sediment transport modeling.
+
+The model approach presented in this thesis is a unification of the
+classic approach based on the shear velocity threshold and the
+approach of \citet{deVries2014b}. Whereas \citet{deVries2014b} use a
+user-defined value for the sediment availability $m_{\mathrm{a}}$ (or
+$S_{\mathrm{e}}$) to truncate the instantaneous sediment transport in
+their model, the approach presented in this thesis uses simulation to
+determine the local sediment availability $m_{\mathrm{a,k}}$. The
+weighting factor $\hat{w}_k$ is subsequently adapted to the local
+sediment availability (Equation \ref{eq:erodep_multi}). Since the
+weighting factor $\hat{w}_k$ is essentially a space- and
+time-dependent modification to the shear velocity threshold, this new
+approach connects the field of availability-limited aeolian sediment
+transport modeling with the long history of aeolian
+research. \mrq[d]{3.2}
+
+Availability-limited aeolian sediment transport modeling can be
+further improved by distinguishing between the fluid and impact
+threshold in future versions of the presented model. The presented
+model provides a framework in which such distinction can be made
+rather naturally. The bed interaction parameter essentially implements
+this distinction already for armored beach surfaces, but a more
+generic implementation is required for coastal systems with large
+spatial variations in sediment availability. A key issue is still that
+relations between bed surface properties, sediment availability and
+the shear velocity threshold are typically derived as bulk formulation
+for the fluid and impact threshold together. A proper implementation
+of the fluid and impact threshold in the presented model therefore
+depends on a substantial investment in data collection
+\citep[e.g.][]{Martin2016}.
+
+The presented model for availability-limited aeolian sediment
+transport can also be applied to availability-abundant coastal
+systems. However, much of the complexity in coastal aeolian sediment
+transport modeling is related to aeolian sediment availability. The
+approach might be considered too complex for more regular situations
+where sediment availability is abundant. A key issue is that assessing
+whether a coastal environment is availability-limited or not is not
+trivial. In this thesis established formulations for equilibrium
+aeolian sediment transport are used to roughly estimate the sediment
+availability of coastal systems. However, if the presented model is
+proven to be sufficiently accurate in availability-abundant coastal
+systems, it might be used to formulate rules of thumb to assess
+coastal systems on their sediment availability more
+accurately. Subsequently, the model might be used to assess these
+coastal systems that are found to be availability-limited or
+facilitate the formulation of aggregated relations between aeolian
+sediment availability and transport that would serve a more rapid
+assessment.
+
+In hindsight, the chapters in this thesis reveal a certain chronology
+in understanding the phenomenon of aeolian sediment availability.
+Deducing the significance of sediment availability from the large
+scale sediment budget analysis or the small scale sediment transport
+measurements was not trivial as sediment availability appeared to be
+rather intangible. This started with the slightly ambiguous use of
+terminology in literature where, for example, \emph{sediment supply}
+is often mistaken to be equal to \emph{sediment availability} or the
+\emph{shear velocity threshold}. In addition, various aeolian, marine
+and meteorological processes affect aeolian sediment availability
+and/or the shear velocity threshold differently and on various
+temporal and spatial scales. Consequently, significant time was spent
+to narrow down the essence of sediment availability and define a
+distinctive terminology accordingly. The phenomenon of aeolian
+sediment availability was made tangible in a numerical model for
+aeolian sediment availability and transport that is unique in that it
+describes aspects essential to aeolian sediment availability and
+transport modeling that have previously been subject to research, but
+never been combined in a comprehensive model approach. The main
+contribution of the model is the \emph{combined} simulation of:
+
+\begin{enumerate}
+\item Temporal variations in aeolian sediment availability and
+  transport.
+\item Spatial variations in aeolian sediment availability and
+  transport.
+\item Recurrence relation between aeolian sediment availability and
+  transport through self-grading of sediment.
+\item Simulation of multiple availability-limiting processes and their
+  combined influence on aeolian sediment transport.
+\item Natural differentiation between fluid and impact shear velocity
+  threshold (not implemented).
+\end{enumerate}
+
+%\section{Future model improvements}
+
+As illustrated by the Sand Motor hindcast presented in Chapter
+\ref{ch:hindcast}, the combined influence of various aspects of
+aeolian sediment availability is essential to obtain reliable
+estimates of aeolian sediment transport and dune growth for which the
+presented model provides a general framework. Notwithstanding that
+model development just started and needs further extension,
+calibration and validation to make it generally applicable.
+
+Based on the Sand Motor hindcast several opportunities for future
+model improvement have been identified:
+
+\begin{itemize}
+\item Support for local variations in wind shear due to morphological
+  feedback.
+
+  Neither deposition in front of the dunes nor deposition in the lee
+  of the Sand Motor crest is currently simulated as morphological
+  feedback with the wind is not taken into account. Given the
+  discrepancy in the spatial distribution of aeolian sediment deposits
+  between measurements and model result, it seems advisable to provide
+  the model with local variations in wind shear. The model of
+  \cite{Kroy2002} based on the derivation of the local wind field by
+  \citet{Weng1991} might provide a description of the local variations
+  in wind shear for which the computational effort relates well to the
+  presented model.
+
+%\item Support for local variations in wind shear due to the presence
+%  of vegetation.
+%
+%  No deposition in the dunes is currently simulated as the reduction
+%  in wind shear due to the presence of vegetation is not taken into
+%  account. The model of \citet{Duran2013} as an extension to the model
+%  of \citet{Kroy2002} might provide this functionality.
+
+\item Support for the effect of wind gusts.
+
+  The calibrated model is forced by an hourly averaged wind time
+  series. The use of hourly averaged values for wind speed neglects
+  the gustiness of the wind. Wind gusts might influence sediment
+  transport significantly as the relation between wind speed and
+  sediment transport is nonlinear. However, providing the model with
+  high resolution wind time series would not be beneficial in
+  combination with the diffusive implicit numerical scheme. To solve
+  for the effect of gustiness an explicit or semi-implicit numerical
+  scheme can be used, but such scheme would not be computationally
+  feasible for long-term simulations. Moreover, since saltation is not
+  purely an advective mode of transport, the assumption of advection
+  might be violated for very short time scales as interaction with the
+  bed becomes dominant.
+
+  As an alternative, the influence of gusts can be parameterized. It
+  can be argued that some persistence is needed for gusts to influence
+  sediment transport, resulting in a lower boundary of the temporal
+  resolution of the wind time series. The distribution of the wind
+  speed with respect to the hourly average can then provide a basis
+  for a gustiness factor that increases the global wind shear.
+
+\item Support for differentiation between the fluid and impact shear
+  velocity thresholds.
+
+  The sediment transport capacity is currently implemented identical
+  for the initiation and continuation of motion as no distinction
+  between the fluid and impact threshold is made. The Sand Motor
+  hindcast illustrates how this restriction affects the influence of
+  roughness elements on aeolian sediment availability. Similar to the
+  implementation of the bed interaction parameter, that distinguishes
+  between the grain size distribution in the bed and the air, a
+  distinction between fluid and impact threshold can be implemented.
+
+  The right-hand side of the advection equation (Equation
+  \ref{eq:erodep_multi}) can be modified according to:
+
+  \begin{equation}
+    \label{eq:erodep_split}
+    E_k - D_k = \min \left( 
+      \frac{\partial m_{\mathrm{a},k}}{\partial t} \quad ; \quad 
+      \frac{\hat{w}_k}{T} \cdot \left[
+        (1 - S_k) \cdot c^{\mathrm{fluid}}_{\mathrm{sat},k} +
+        S_k \cdot c^{\mathrm{impact}}_{\mathrm{sat},k} - c_k
+      \right]
+    \right)
+  \end{equation}
+
+  \noindent where $c^{\mathrm{fluid}}_{\mathrm{sat},k}$
+  [$\mathrm{kg/m^2}$] and $c^{\mathrm{fluid}}_{\mathrm{sat},k}$
+  [$\mathrm{kg/m^2}$] are the sediment transport capacity associated
+  with the fluid and impact threshold respectively and $S_k$ [-] is
+  the degree of saturation defined as:
+
+  \begin{equation}
+    S_k = \sum_{k=1}^{n_{\mathrm{k}}} \frac{c_k}{c^{\mathrm{impact}}_{\mathrm{sat},k}}
+  \end{equation}
+
+  \noindent Note that the weighting factor $\hat{w}_k$ already
+  distinguishes between sediment in the air and in the bed, depending
+  on the saturation and the bed interaction parameter and therefore
+  appears outside the brackets.
+
+  Although the presented model conceptually allows to differentiate
+  between the impact and fluid threshold, empirical data to quantify
+  the differentiation is lacking. This model improvement is therefore
+  hypothetical at the current stage of development.
+
+\item Support for independent definition of the active bed layer.
+
+  The top bed composition layer currently acts as active bed layer,
+  but at the same time defines the vertical resolution of the sorting
+  and armoring processes. As these are two fundamentally different
+  properties of the model, it is advisable to define the active bed
+  layer separate from the numerical resolution. A probability
+  distribution can be defined that describes the probability of
+  sediment to be eroded from a specific layer, which would logically
+  decrease with the depth. The bed composition layer thickness would
+  than uniquely determine the vertical resolution of sorting and
+  armoring.
+
+\item Online model coupling
+
+  The Sand Motor hindcast showed the importance of an accurate
+  description of the hydrodynamics for accurate estimates of the
+  development of the aeolian sedimentation and erosion
+  volumes. Similarly, groundwater seepage might influence the aeolian
+  sediment deposition around the lagoon and dune lake, which would
+  require a description of the groundwater level to be implemented.
+
+  It can be questioned if such detailed descriptions of hydrodynamic
+  and hydrological processes are still within the scope of an aeolian
+  sediment transport model. Alternatively, online model coupling with
+  dedicated models for near-shore hydrodynamics and hydrology through
+  the Basic Model Interface (BMI) can be pursued.
+
+\end{itemize}
+
+
+
+
+
+%Aeolian sediment availability is generally associated with the shear
+%velocity threshold. Based on the subaerial evolution of the Sand Motor
+%mega nourishment it is illustrated that practical application of the
+%shear velocity threshold to describe the local aeolian sediment
+%availability is not trivial. The shear velocity threshold is used to
+%describe both the change in sediment transport capacity, associated
+%with the impact threshold, as well as the change in sediment
+%availability, associated with the fluid threshold. Moreover, the shear
+%velocity is influenced by spatiotemporal variations in bed surface
+%properties and the feedback between sediment transport and sediment
+%availability, that require a process-based description of the shear
+%velocity threshold.
+%
+%In Chapter \ref{ch:model} different approaches 
+%
+%
+%the only existing model
+%approach that could potentially fulfill these requirements is the
+%availability-limited advection scheme following
+%\citet{deVries2014b}. This approach is extended with a process-based
+%description of soil moisture and sediment sorting and beach
+%armoring. What is not obvious from the model description in Chapter
+%\ref{ch:model} is that this approach appears to be equivalent to the
+%traditional approach based on the shear velocity threshold. However,
+%the shear velocity threshold is captured in an advection framework
+%that allows for feedback with between sediment availability and
+%transport as well as differentiation between the fluid and impact
+%threshold.
+
+
+
+
+
+% and
+%reflects a certain chronology in understanding the phenomenon.  In
+%Chapter \ref{ch:largescale} sediment availability is discussed in
+%terms of potential and actual sedimentation volumes at the Sand Motor
+%mega nourishment. The difference is generally associated with aeolian
+%sediment availability and expressed in a shear velocity
+%threshold. Alternatively, sediment availability can be expressed in
+%terms of critical fetch \citep{Bauer2002} or explicitly following
+%\citet{deVries2014b}. In Chapter \ref{ch:model} it is argued that
+%these approaches are related, but differ in the complexity of
+%situations they can describe. The approach of \citet{deVries2014b} is
+%adopted and extended with a process-based description of soil moisture
+%and sediment sorting and beach armoring. In Chapter \ref{ch:hindcat}
+%this new approach is applied to the Sand Motor mega nourishment, which suggests that...
+
+
+
+
+%Observations at the Sand Motor mega nourishment
+%inspired the development of a numerical model that focuses on the
+%quantification of aeolian sediment availability. Therefore the
+%\textsc{AeoLiS} model should, in its current stage, be seen as a
+%sediment availability rather than a sediment transport model.
+%
+%Past research on aeolian sediment availability focused mainly on the
+%use of shear velocity thresholds. 
+
+% the nature of limitations in sediment availability, the paradox, the connections
+
+
+% time and space variability introduced, but initiation and conitunation distinction still to do
+
+% ultimately: simple model
+
+
+
+
+
+
+
+
+% average wind vs gusts
+
+
+% bed composition layers
+
+
+% winter vs. summer fluxes
+
+% offshore fluxes
+
+% alongshore variability
+
+% salt crusts and other supply limiters
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End:

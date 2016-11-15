@@ -1,0 +1,168 @@
+\documentclass[twoside,openright,titlepage,
+headinclude,footinclude,cleardoublepage=empty,
+numbers=noenddot,fontsize=9pt]{scrbook}
+
+\usepackage{ifthen}
+
+% enable internal linking of research questions
+\newboolean{researchquestions}
+\setboolean{researchquestions}{true}
+
+% enable a4 print
+\newboolean{a4}
+\setboolean{a4}{true}
+
+% disable paper mode
+\newboolean{ispaper}
+\setboolean{ispaper}{false}
+
+\include{config}
+ 
+\begin{document}
+
+\selectlanguage{english}
+\pagenumbering{roman}
+\pagestyle{plain}
+
+\sloppy
+
+\ifthenelse
+{\boolean{a4}}{}
+{
+  \pdfbookmark[0]{Cover}{cover}
+  \includepdf[pages={1},
+              fitpaper=True,
+              % landscape=True,
+              link=True,
+              linkname=cover]{cover.pdf}
+  \cleardoublepage
+}
+
+\include{titlefront}
+\include{titleback}
+\include{titlefront_official}
+\include{titleback_official}
+\include{dedication}
+
+\frontmatter
+\pdfbookmark[0]{Contents}{contents}
+\include{contents}
+\pdfbookmark[0]{Definitions}{definitions}
+\include{definitions}
+\pdfbookmark[0]{Acronyms}{acronyms}
+\include{acronyms}
+\pdfbookmark[0]{Symbols}{symbols}
+\include{symbols}
+\pdfbookmark[0]{List of Figures}{listoffigures}
+\listoffigures
+\pdfbookmark[0]{List of Tables}{listoftables}
+\listoftables
+\cleardoublepage
+\pdfbookmark[0]{Abstract}{abstract}
+\include{abstract}
+\pdfbookmark[0]{Samenvatting}{samenvatting}
+\include{samenvatting}
+\cleardoublepage
+
+\mainmatter
+\pagenumbering{arabic}
+
+\chapter{Introduction} \label{ch:introduction}
+
+\input{introduction}
+
+\cleardoublepage
+\ctparttext{Field data is collected at the Sand Motor mega nourishment
+  in The Netherlands. The Sand Motor showed a peculiar morphological
+  development since its construction as it is permanently exposed to
+  wind and yet its sub-aerial morphology is remarkably static.
+}
+\part{Field data}
+
+\chapter{Large scale sediment budgets}\label{ch:largescale}
+
+\emph{This chapter is based on a previous publication: \bibentry{Hoonhout2017a}.}
+
+\input{largescale}
+
+\chapter{Small scale sediment transport} \label{ch:smallscale}
+
+\emph{This chapter is based on a previous publication: \bibentry{Hoonhout2017b}.}
+
+\input{smallscale}
+
+\cleardoublepage
+\ctparttext{Inspired by the field observations a numerical model is
+  developed and applied to hindcast the sub-aerial morphological
+  evolution of the Sand Motor for the 4 years after
+  construction.
+}
+\part{Numerical modeling}
+
+\chapter{Numerical model} \label{ch:model}
+
+\emph{This chapter is based on a previous publication:
+  \bibentry{Hoonhout2016}.}
+
+\bigskip
+
+\noindent \emph{The numerical implementation of the model presented in
+  this chapter and experimental features not discussed are elaborated
+  in Appendix \ref{apx:numerics}.}
+
+\input{model}
+
+\chapter{Sand Motor hindcast} \label{ch:hindcast}
+
+\emph{This chapter is intended to be published separately and was
+  written accordingly, but has not been submitted to a particular
+  journal yet.}
+
+\input{hindcast}
+
+\cleardoublepage
+\part{Discussion and conclusions}
+
+\chapter{Discussion} \label{ch:discussion}
+
+\input{discussion}
+
+\chapter{Conclusions} \label{ch:conclusions}
+
+\input{conclusions}
+
+%*********************************************************************
+% Appendices
+%*********************************************************************
+\appendix
+\cleardoublepage
+\part{Appendices}
+\include{appendix_theoreticaltransport}
+\include{appendix_implementation}
+\include{appendix_modelsettings}
+%\include{appendix_bedinteraction}
+
+%*********************************************************************
+% Postamble
+%*********************************************************************
+\backmatter
+\chapter*{Bibliography}
+\addchaptertotoc{Bibliography}
+\begingroup
+\renewcommand{\chapter}[2]{} % remove header
+\bibliographystyle{apalike}
+\bibliography{bibliography}{}
+\endgroup
+
+\include{acknowledgments}
+\include{curriculumvitae}
+\include{publications}
+\cleardoublepage
+\include{colophon}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
