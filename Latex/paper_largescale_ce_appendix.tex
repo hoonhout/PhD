@@ -1,0 +1,48 @@
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{tabularx}
+\usepackage{lineno}
+\linenumbers*[1]
+
+% add references to research questions in margin
+\newcommand{\mrq}[2][]{}
+\newcommand{\rrq}[3][]{}
+\newboolean{ispaper}
+\setboolean{ispaper}{true}
+
+\def\appendixname{}
+
+\journal{Coastal Engineering}
+
+\begin{document}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{../Figures/boundaryconditions}
+  \caption{Wind and hydrodynamic time series from 2011 to 2015. Hourly
+    averaged wind speeds and directions are obtained from the KNMI
+    meteorological station in Hoek van Holland (upper
+    panels). Offshore still water levels, wave heights and wave
+    periods are obtained from the Europlatform (lower panels). Runup
+    levels are estimated following \citet{Stockdon2006}.}
+  \label{fig:windwaves}
+\end{figure}
+
+\appendix
+
+\input{appendix_theoreticaltransport}
+
+\section*{References}
+\bibliographystyle{apalike} %elsarticle-harv}
+\bibliography{bibliography}{}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
