@@ -6,17 +6,20 @@ numbers=noenddot,fontsize=9pt]{scrbook}
 
 % enable internal linking of research questions
 \newboolean{researchquestions}
-\setboolean{researchquestions}{true}
+\setboolean{researchquestions}{false}
 
 % enable a4 print
 \newboolean{a4}
-\setboolean{a4}{true}
+\setboolean{a4}{false}
 
 % disable paper mode
 \newboolean{ispaper}
 \setboolean{ispaper}{false}
 
 \include{config}
+
+% enable line numbers
+%\linenumbers*[1]
  
 \begin{document}
 
@@ -81,13 +84,13 @@ numbers=noenddot,fontsize=9pt]{scrbook}
 
 \chapter{Large scale sediment budgets}\label{ch:largescale}
 
-\emph{This chapter is based on a previous publication: \bibentry{Hoonhout2017a}.}
+\emph{This chapter is based on another publication: \bibentry{Hoonhout2017a}.}
 
 \input{largescale}
 
 \chapter{Small scale sediment transport} \label{ch:smallscale}
 
-\emph{This chapter is based on a previous publication: \bibentry{Hoonhout2017b}.}
+\emph{This chapter is based on another publication: \bibentry{Hoonhout2017b}.}
 
 \input{smallscale}
 
@@ -101,7 +104,7 @@ numbers=noenddot,fontsize=9pt]{scrbook}
 
 \chapter{Numerical model} \label{ch:model}
 
-\emph{This chapter is based on a previous publication:
+\emph{This chapter is based on another publication:
   \bibentry{Hoonhout2016}.}
 
 \bigskip
@@ -114,9 +117,9 @@ numbers=noenddot,fontsize=9pt]{scrbook}
 
 \chapter{Sand Motor hindcast} \label{ch:hindcast}
 
-\emph{This chapter is intended to be published separately and was
-  written accordingly, but has not been submitted to a particular
-  journal yet.}
+%\emph{This chapter is intended to be published separately and was
+%  written accordingly, but has not been submitted to a particular
+%  journal yet.}
 
 \input{hindcast}
 

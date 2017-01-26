@@ -619,10 +619,9 @@ input file or through the model command-line options as
 import numpy as np
 
 def update(model):
-  val = model.get_var('zb')
-  val_new = val.copy()
-  val_new[:,:] = np.loadtxt('measured_topography.txt')
-  model.set_var('zb', val_new)
+  val = model.get_var('zb').copy()
+  val[:,:] = np.loadtxt('measured_topography.txt')
+  model.set_var('zb', val)
 \end{lstlisting}
 
 %%% Local Variables:

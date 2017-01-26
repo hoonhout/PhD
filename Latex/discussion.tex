@@ -44,7 +44,7 @@ the shear velocity threshold are typically derived as bulk formulation
 for the fluid and impact threshold together. A proper implementation
 of the fluid and impact threshold in the presented model therefore
 depends on a substantial investment in data collection
-\citep[e.g.][]{Martin2016}.
+\citep{Martin2016}.
 
 The presented model for availability-limited aeolian sediment
 transport can also be applied to availability-abundant coastal
@@ -52,7 +52,7 @@ systems. However, much of the complexity in coastal aeolian sediment
 transport modeling is related to aeolian sediment availability. The
 approach might be considered too complex for more regular situations
 where sediment availability is abundant. A key issue is that assessing
-whether a coastal environment is availability-limited or not is not
+whether a coastal environment is availability-limited or not, is not
 trivial. In this thesis established formulations for equilibrium
 aeolian sediment transport are used to roughly estimate the sediment
 availability of coastal systems. However, if the presented model is
@@ -142,14 +142,12 @@ model improvement have been identified:
   the gustiness of the wind. Wind gusts might influence sediment
   transport significantly as the relation between wind speed and
   sediment transport is nonlinear. However, providing the model with
-  high resolution wind time series would not be beneficial in
-  combination with the diffusive implicit numerical scheme. To solve
-  for the effect of gustiness an explicit or semi-implicit numerical
-  scheme can be used, but such scheme would not be computationally
-  feasible for long-term simulations. Moreover, since saltation is not
-  purely an advective mode of transport, the assumption of advection
-  might be violated for very short time scales as interaction with the
-  bed becomes dominant.
+  high resolution wind time series would require a less diffusive
+  numerical scheme that would likely not be computationally feasible
+  for long-term simulations. Moreover, since saltation is not purely
+  an advective mode of transport, the assumption of advection might be
+  violated for very short time scales as interaction with the bed
+  becomes dominant.
 
   As an alternative, the influence of gusts can be parameterized. It
   can be argued that some persistence is needed for gusts to influence
@@ -217,7 +215,7 @@ model improvement have been identified:
   than uniquely determine the vertical resolution of sorting and
   armoring.
 
-\item Online model coupling
+\item Use of online coupling with other models
 
   The Sand Motor hindcast showed the importance of an accurate
   description of the hydrodynamics for accurate estimates of the
@@ -229,14 +227,30 @@ model improvement have been identified:
   It can be questioned if such detailed descriptions of hydrodynamic
   and hydrological processes are still within the scope of an aeolian
   sediment transport model. Alternatively, online model coupling with
-  dedicated models for near-shore hydrodynamics and hydrology through
-  the Basic Model Interface (BMI) can be pursued.
+  dedicated models for near-shore hydrodynamics and hydrology can be
+  pursued. A Basic Model Interface (BMI) was implemented to
+  accommodate model coupling.
 
 \end{itemize}
 
-
-
-
+The Sand Motor appeared to be a valuable field site for investigating
+the influence of aeolian sediment availability on long-term aeolian
+sediment transport. The construction height, dry surface area and
+considerable beach armoring and compartmentalization amplify the
+processes governing aeolian sediment availability. These
+characteristics make the Sand Motor also a peculiar coastal site that
+might be better described as ``coastal desert'' than ``mega
+nourishment''. The relative importance of processes governing aeolian
+sediment availability are likely to be different at a more ordinary
+coastal site. For example, beach armoring will not be as important on
+narrow beaches that are frequently flooded. Preliminary model results
+for more ordinary coastal sites suggest that the extent of the
+compartmentalization of the beach is less, but spatiotemporal
+variations in aeolian sediment availability can still have a
+significant influence on aeolian sediment transport. A comparison
+between field measurements from more ordinary coastal sites and model
+results can provide insight in the relative importance of these
+processes in general.
 
 %Aeolian sediment availability is generally associated with the shear
 %velocity threshold. Based on the subaerial evolution of the Sand Motor
