@@ -29,17 +29,17 @@ numbers=noenddot,fontsize=9pt]{scrbook}
 
 \sloppy
 
-\ifthenelse
-{\boolean{a4}}{}
-{
-  \pdfbookmark[0]{Cover}{cover}
-  \includepdf[pages={1},
-              fitpaper=True,
-              % landscape=True,
-              link=True,
-              linkname=cover]{cover.pdf}
-  \cleardoublepage
-}
+%\ifthenelse
+%{\boolean{a4}}{}
+%{
+%  \pdfbookmark[0]{Cover}{cover}
+%  \includepdf[pages={1},
+%              fitpaper=True,
+%              % landscape=True,
+%              link=True,
+%              linkname=cover]{cover.pdf}
+%  \cleardoublepage
+%}
 
 \include{titlefront}
 \include{titleback}
