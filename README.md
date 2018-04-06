@@ -1,7 +1,7 @@
 # PhD
 
 Ansible configuration to generate PhD thesis on aeolian sediment
-availability and transport from raw data.
+availability and transport ([10.4233/uuid:e84894d6-87d2-4006-a8c2-d9fbfacabddc](http://doi.org/10.4233/uuid:e84894d6-87d2-4006-a8c2-d9fbfacabddc)) from raw data.
 
 ## Usage
 
