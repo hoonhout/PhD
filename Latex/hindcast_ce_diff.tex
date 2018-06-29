@@ -1,0 +1,84 @@
+299,301c299,303
+< cells and in vertical bed layers (2DV). Moreover, the grain size
+< distribution is discretized into fractions. This allows the grain size
+< distribition to vary both horizontally and vertically.
+---
+> cells and in vertical bed layers (2DV) that move with the
+> bed. Moreover, the grain size distribution is discretized into
+> fractions. This allows the grain size distribition, sediment
+> availability and sediment supply to vary both horizontally and
+> vertically.
+364a367,373
+> Waves cause stirring of the bed and mixing of the sediment that is
+> available in the vertical bed layers. Therefore, wave action can cause
+> finer sediment in deeper bed layers to surface thereby increasing
+> local sediment availability. However, also in case of wave action
+> sediment availability is limited as the model does not include a
+> marine sediment source.
+> 
+382a392,403
+> Due to the implementation of multi-fraction sediment transport
+> (Equations \ref{eq:advection} and \ref{eq:erodep}), fine sediment is
+> eroded from the bed surface more easily then coarse
+> sediment. Consequently, the bed surface coarsens over time. The
+> implementation of the sheltering effect of roughness elements
+> (Equation \ref{eq:raupach}) enhances this effect as also roughness
+> elements surface over time and limit sediment availability in erosive
+> zones. Currently, the only counteracting process implemented in the
+> model is wave stirring. Other processes, like weathering, abrasion,
+> breakage or mobilization of larger shell fragments are not included,
+> but tend to act on a larger temporal scale or occur irregularly.
+> 
+512,514c533,534
+< van Holland (Figure \ref{fig:boundaryconditions}a,b). Hourly offshore
+< water levels and wave heights are obtained from the Europlatform for
+< the same period (Figure \ref{fig:boundaryconditions}c,d).
+---
+> van Holland (Figure \ref{fig:boundaryconditions}a,b) are uniformly
+> imposed to the model.
+585,586c605,608
+< Water levels and wave heights are initially uniformly imposed to the
+< model. Consequently, the tidal range, mean water level and wave
+---
+> Hourly offshore water levels and wave heights are obtained from the
+> Europlatform for the same period (Figure
+> \ref{fig:boundaryconditions}c,d).  and are initially uniformly imposed
+> to the model. Consequently, the tidal range, mean water level and wave
+710,716c732,741
+< with net aeolian deposition (lagoon, dune lake and dunes). The zonation
+< is based on the 0, 3 and 5 m+MSL contour lines that roughly correspond
+< with the mean water level, maximum runup level or berm edge and the
+< dune foot respectively. The average $\mathrm{R^2}$ value of the time
+< series for erosion and deposition is used as benchmark. The
+< $\mathrm{R^2}$ value represents the fraction of explained variance and
+< is defined as:
+---
+> with net aeolian deposition (lagoon, dune lake and dunes). The
+> zonation is based on the 0, 3 and 5 m+MSL contour lines that roughly
+> correspond with the mean water level, maximum runup level or berm edge
+> and the dune foot respectively. Note that zonation is strictly used as
+> method to detail the spatial varying performance of the model. All
+> modeled processes are identical throughout the computational
+> domain. Zonation is not imposed to the model other than, indirectly,
+> through topology. The average $\mathrm{R^2}$ value of the time series
+> for erosion and deposition is used as benchmark. The $\mathrm{R^2}$
+> value represents the fraction of explained variance and is defined as:
+973,975c998,1007
+< by initial shell fraction of 5\%, which might be
+< overestimated. Alternatively, the initially uniform distribution of
+< shells in the bed is not an accurate representation of reality.
+---
+> by initial shell fraction of 5\%, which might be overestimated, or the
+> initially uniform distribution of shells in the bed is not an accurate
+> representation of reality. Alternatively, processes that are not
+> included in the model, like weathering, abrasion, breakage or
+> mobilization of larger shell fragments, might explain the difference
+> between model results and measurements. As weathering, abrasian and
+> breakage affect the beach armoring on a larger temporal scale,
+> mobilization of shells and shell fragments seems to be a more likely
+> explanation to the discrepancies in the first months of the
+> simulation.
+1180c1212
+< %%% TeX-master: "paper_hindcast_ce"
+---
+> %%% TeX-master: "paper_hindcast_ce_v2"

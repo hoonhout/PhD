@@ -1,0 +1,108 @@
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{tabularx}
+\usepackage{lineno}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{color}
+\usepackage{ulem}
+%\linenumbers*[1]
+
+% add references to research questions in margin
+\newcommand{\mrq}[2][]{}
+\newcommand{\rrq}[3][]{}
+\newboolean{ispaper}
+\setboolean{ispaper}{true}
+
+\def\appendixname{}
+
+\journal{Coastal Engineering}
+
+\begin{document}
+
+\begin{frontmatter}
+
+  \title{Simulating Spatiotemporal Aeolian Sediment Supply at a Mega Nourishment}
+
+  \author[deltares]{Bas Hoonhout\corref{ca}}
+  \ead{bas.hoonhout@deltares.nl}
+  \cortext[ca]{Corresponding author}
+
+  \author[tudelft]{Sierd de Vries}
+
+  \address[deltares]{Deltares, Department of Hydraulic Engineering,
+    Boussinesqweg 1, 2629HV Delft, The Netherlands.}
+
+  \address[tudelft]{Delft University of Technology, Faculty of Civil
+    Engineering and Geosciences, Department of Hydraulic Engineering,
+    Stevinweg 1, 2628CN Delft, The Netherlands.}
+
+  \begin{abstract}
+    Mega nourishments are a novel approach to stimulating coastal
+    safety and resilience. Mega nourishments are intended to spread
+    along the coast on a decadal time scale by natural sediment
+    transport processes with a minimum of intrusion into the natural
+    coastal system. The supratidal morphodynamic behaviour of mega
+    nourishments is not well understood due to complexities introduced
+    by limitations in sediment availability to aeolian sediment
+    transport. Consequently, the effectiveness of mega nourishments to
+    stimulate coastal safety and to influence coastal landscape and
+    habitat development remains unknown.
+
+    In this paper we present a detailed 4-year hindcast of the
+    morphological development of the Sand Motor mega nourishment in
+    The Netherlands. We use the aeolian sediment transport and
+    availability model \textsc{AeoLiS} that focuses specifically on
+    the simulation of spatiotemporal variations in sediment
+    availability. The model includes the recurrence relation between
+    sediment availability and aeolian sediment transport through
+    self-grading and beach armoring.
+
+    We show that the model is able to reproduce multi-annual aeolian
+    sediment transport rates in the Sand Motor domain in the four
+    years after its construction. The RMSE is $3 \cdot 10^4 ~
+    \mathrm{m^3}$ (7\% of the total sediment accumulation) and
+    $\mathrm{R^2}$ is 0.93 when comparing timeseries of total sediment
+    accumulation in the dunes, dune lake and lagoon. The combination
+    of spatial and temporal variations in aeolian sediment
+    availability, due to the combined influence of soil moisture,
+    sediment sorting and beach armoring, is essential for an accurate
+    estimate of the total sedimentation volume. The simulated feedback
+    between aeolian sediment availability and transport is required
+    for accurately describing compartmentalization of the beach and
+    locating the aeolian sediment source areas in the Sand Motor
+    domain.
+    
+  \end{abstract}
+
+  \begin{keyword}
+    aeolian sediment transport; aeolian sediment supply; beach
+    armoring; mega nourishment; Sand Motor; numerical model; aeolis
+  \end{keyword}
+
+\end{frontmatter}
+
+\input{hindcast_ce_v2_diff}
+
+\section*{Acknowledgements}
+The work discussed in this paper is supported by the ERC-Advanced
+Grant 291206 -- Nearshore Monitoring and Modeling (NEMO) and Deltares.
+
+\appendix
+
+\input{appendix_modelsettings}
+
+\section*{References}
+\bibliographystyle{apalike} %elsarticle-harv}
+\bibliography{bibliography}{}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
